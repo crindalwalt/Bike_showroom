@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderConfirm;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class Admin extends Controller
 {
@@ -103,5 +104,59 @@ class Admin extends Controller
     public function adminOrderdetail(OrderConfirm $order)
     {
         return view('dashboard.orders.orderdetail' , compact('order'));
+    }
+
+
+
+
+    public function storeProduct (Request $request){
+        // dd($request->all());
+
+        //validation
+
+
+        //image upload
+        if($request->hasFile("image")){
+            // image is present
+            $image = $request->file("image");
+        // generate the unique name for the image
+            $imageName = "IMG-" . time() . "." . $image->getClientOriginalExtension();
+
+        // move the image to the public folder
+            $image->storeAs("products" , $imageName, "public");
+
+            return "image stored";
+        }else{
+            $imageName = "https://via.placeholder.com/150";
+            // image is not present
+            return "image not stored";
+        }
+
+        // save in database
+
+        Product::create([
+            "image_url" => $imageName,
+        ]);
+
+
+        // return back with success message
+    }
+
+
+    public function updateOrderStatus(Request $request, OrderConfirm $order)
+    {
+        // dd($request->all(), $order);
+
+        if($order->order_status == "shipped"){
+            if($request->status == "cancelled"){
+                return redirect()->back()->with('error', 'Cannot cancel an order that has already been shipped.');
+            }
+            
+        }
+        $order->update([
+            'order_status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Order status updated successfully.');
     }
 }

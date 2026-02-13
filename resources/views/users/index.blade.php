@@ -77,11 +77,11 @@
 						<td>Roadster 300</td>
 						<td>Sports</td>
 						<td>$2,499</td>
-						<td class="text-end">
+						{{-- <td class="text-end">
 							<a href="{{ route('dashboard.products.show') }}" class="btn btn-sm btn-outline-secondary">View</a>
 							<a href="{{ route('dashboard.products.edit') }}" class="btn btn-sm btn-outline-warning">Edit</a>
 							<a href="{{ route('dashboard.products.delete') }}" class="btn btn-sm btn-danger">Delete</a>
-						</td>
+						</td> --}}
 					</tr>
 					<tr>
 						<td>Commuter Plus</td>

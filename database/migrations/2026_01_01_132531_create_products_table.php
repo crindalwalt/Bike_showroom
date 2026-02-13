@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer("old_price");
             $table->integer("new_price");
             $table->longtext("description");
-            $table->string("excerpt");
+            $table->string("excerpt")->nullable();
             $table->integer("category_id");
             $table->string("brand");
             $table->string("condition");

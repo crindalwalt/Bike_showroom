@@ -101,35 +101,20 @@
                     <p class="text-muted">Listed product identifiers (stored in `productId`). If your controller passes
                         related products, they will show here.</p>
 
-                    @if (isset($products) && count($products))
-                        <div class="table-responsive">
-                            <table class="table align-middle">
-                                <thead>
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th class="text-end">Qty</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($products as $p)
-                                        <tr>
-                                            <td style="width:64px"><img
-                                                    src="{{ $p->thumb ?? '/images/placeholder.png' }}"
-                                                    style="width:64px;height:48px;object-fit:cover;border-radius:8px;border:1px solid #E5E7EB">
-                                            </td>
-                                            <td>{{ $p->name }}</td>
-                                            <td>${{ number_format($p->new_price ?? ($p->price ?? 0), 2) }}</td>
-                                            <td class="text-end">{{ $p->pivot->quantity ?? 1 }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                    <form action="{{ route("dashboard.orders.update_status" , $order->id) }}" method="POST">
+                        @csrf
+                        <div class="d-flex align-items-center gap-2">
+                            <select name="status" class="p-2 rounded-4" id="">
+                                <option value="pending" @if($order->order_status === 'pending') selected @endif>Pending</option>
+                                <option value="processing" @if($order->order_status === 'processing') selected @endif>Processing</option>
+                                <option value="shipped" @if($order->order_status === 'shipped') selected @endif>Shipped</option>
+                                <option value="delivered" @if($order->order_status === 'delivered') selected @endif>Delivered</option>
+                                <option value="cancelled" @if($order->order_status === 'cancelled') selected @endif>Cancelled</option>
+                            </select>
+
+                            <button class="btn btn-primary">Update Status</button>
                         </div>
-                    @else
-                        <pre class="small bg-light p-3">{{ $order->productId }}</pre>
-                    @endif
+                    </form>
                 </div>
             </div>
         </div>
