@@ -71,7 +71,7 @@
                                 <h5 class="fw-bold mb-3">Payment Method</h5>
 
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="radio" name="payment" checked>
+                                    <input class="form-check-input" type="radio" name="payment" value="cod" checked>
                                     <label class="form-check-label fw-bold">
                                         Cash on Delivery
                                     </label>
@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="radio" name="payment">
+                                    <input class="form-check-input" type="radio" name="payment" value="card">
                                     <label class="form-check-label fw-bold">
                                         Credit / Debit Card
                                     </label>
@@ -90,7 +90,7 @@
                                     </p>
 
                                     <!-- Card Details -->
-                                    <div class="row g-3">
+                                    {{-- <div class="row g-3">
                                         <div class="col-md-12">
                                             <input class="form-control" placeholder="Card Number">
                                         </div>
@@ -100,10 +100,10 @@
                                         <div class="col-md-6">
                                             <input class="form-control" placeholder="CVV">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
-                                <div class="form-check">
+                                {{-- <div class="form-check">
                                     <input class="form-check-input" type="radio" name="payment">
                                     <label class="form-check-label fw-bold">
                                         Bank Transfer
@@ -111,7 +111,7 @@
                                     <p class="small text-muted">
                                         Transfer payment directly to our bank account
                                     </p>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </div>

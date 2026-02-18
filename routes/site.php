@@ -14,7 +14,12 @@ Route::get('/bike/{product:slug}', [ProductController::class , 'singleProduct'])
 Route::get('/cart', [ProductController::class , 'cart'])->name('cart');
 Route::get('/checkout/{product:slug}/shop', [ProductController::class , 'checkout'])->name('checkout');
 Route::post('/checkout/{product:slug}/account',[ProductController::class, 'createorder'])->name('checkout.order');
-Route::get('/account/{order}', [ProductController::class , 'account'])->name('account');
+Route::get('/account', [ProductController::class , 'account'])->name('account');
+
+// Stripe callback routes
+Route::get('/stripe/success', [ProductController::class, 'stripeSuccess'])->name('stripe.success');
+Route::get('/stripe/cancel/{productSlug}', [ProductController::class, 'stripeCancel'])->name('stripe.cancel');
+
 Route::get('/category', [CategoryController::class , 'index'])->name('category');
 Route::get('/collection', [CollectionController::class , 'collection'])->name('collection');
 

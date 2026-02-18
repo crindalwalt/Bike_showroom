@@ -113,7 +113,9 @@ class Admin extends Controller
         // dd($request->all());
 
         //validation
-
+        $request->validate([
+            'image' => ["mimetypes:pdf,png,jpeg", "max:2048"],
+        ]);
 
         //image upload
         if($request->hasFile("image")){
@@ -151,7 +153,7 @@ class Admin extends Controller
             if($request->status == "cancelled"){
                 return redirect()->back()->with('error', 'Cannot cancel an order that has already been shipped.');
             }
-            
+
         }
         $order->update([
             'order_status' => $request->status,

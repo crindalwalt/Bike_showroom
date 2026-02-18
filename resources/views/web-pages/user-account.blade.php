@@ -10,6 +10,20 @@
                 <p class="text-muted">Manage your profile and track your bike orders</p>
             </div>
 
+            <div>
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+            </div>
+
             <div class="row g-4">
 
                 <!-- LEFT SIDEBAR -->
@@ -31,17 +45,17 @@
                 <!-- RIGHT CONTENT -->
                 <div class="col-lg-9">
 
-                    <!-- USER INFORMATION -->
+                    {{-- <!-- USER INFORMATION -->
                     <div class="card shadow-sm border-0 mb-4">
                         <div class="card-body">
                             <h5 class="fw-bold mb-3">User Information</h5>
 
                             <div class="row">
                                 <div class="col-md-6 mb-2">
-                                    <strong>Name:</strong> {{ $order->name }}
+                                    <strong>Name:</strong> {{ auth()->user()->name }}
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <strong>Email:</strong> {{ $order->email }}
+                                    <strong>Email:</strong> {{ auth()->user()   ->email }}
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <strong>Phone:</strong> {{ $order->phone }}
@@ -55,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- ORDER TRACKING -->
                     <div class="card shadow-sm border-0 mb-4">
@@ -108,7 +122,7 @@
                                             <th>Details</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    {{-- <tbody>
 
                                         @if($order)
                                         <tr>
@@ -134,7 +148,7 @@
                                         </tr>
                                         @endif
 
-                                    </tbody>
+                                    </tbody> --}}
                                 </table>
                             </div>
 
